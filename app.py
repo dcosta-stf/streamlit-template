@@ -3,7 +3,7 @@ Streamlit + shadcn Template App
 Main entry point for the application
 """
 import streamlit as st
-from streamlit_shadcn_ui import card, progress, badges, button, input, textarea, metric_card
+from streamlit_shadcn_ui import progress, badges, metric_card
 
 # Configure the page
 st.set_page_config(
@@ -134,10 +134,10 @@ with form_col1:
         submitted = st.form_submit_button("Submit")
         
         if submitted:
-            if name and email:
+            if name and email and message:
                 st.success(f"✅ Thanks {name}! Your message has been received.")
             else:
-                st.error("❌ Please fill in all fields.")
+                st.error("❌ Please fill in all required fields.")
 
 with form_col2:
     st.markdown("#### Component Examples")

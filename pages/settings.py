@@ -3,7 +3,6 @@ Settings Page
 Configuration and preferences for the application
 """
 import streamlit as st
-from streamlit_shadcn_ui import switch, slider, alert, badges
 
 # Configure the page
 st.set_page_config(
@@ -154,7 +153,7 @@ with tab3:
         
         st.markdown("#### Delete Your Data")
         st.markdown("Permanently delete all your data from our servers.")
-        st.button("Delete All Data", type="primary")
+        st.button("Delete All Data", type="secondary")
 
 # Action buttons at the bottom
 st.markdown("---")
@@ -171,7 +170,3 @@ with col2:
 
 with col3:
     st.empty()
-
-# Info section
-st.markdown("---")
-st.info("💡 **Tip:** Changes are automatically saved when you interact with the settings.")

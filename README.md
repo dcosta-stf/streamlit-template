@@ -54,7 +54,6 @@ streamlit-template/
 
 - **streamlit**: The main framework for building data apps
 - **streamlit-shadcn-ui**: Beautiful UI components inspired by shadcn/ui
-- **st-pages**: Enhanced page navigation for multi-page apps
 
 ## Usage 💡
 
@@ -78,14 +77,22 @@ The settings page includes:
 
 ### Adding New Pages
 
-1. Create a new Python file in the `pages/` directory
-2. Add the page reference in `app.py`:
+1. Create a new Python file in the `pages/` directory (e.g., `pages/analytics.py`)
+2. Streamlit will automatically detect it and add it to the sidebar navigation
+3. The page filename determines the menu label (e.g., `analytics.py` becomes "Analytics")
+4. You can customize the page icon and name using page configuration:
+
 ```python
-show_pages([
-    Page("app.py", "Home", "🏠"),
-    Page("pages/settings.py", "Settings", "⚙️"),
-    Page("pages/your_new_page.py", "New Page", "📄"),  # Add this
-])
+import streamlit as st
+
+st.set_page_config(
+    page_title="Analytics Dashboard",
+    page_icon="📊",
+    layout="wide"
+)
+
+st.title("📊 Analytics")
+# Your page content here
 ```
 
 ### Styling
