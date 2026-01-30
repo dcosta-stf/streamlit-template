@@ -2,6 +2,10 @@
 .git
 .gitignore
 
+# Docker
+Dockerfile
+.dockerignore
+
 # Python
 __pycache__/
 *.py[cod]
