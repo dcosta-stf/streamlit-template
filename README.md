@@ -14,7 +14,7 @@ A beautiful, production-ready template for building data applications with Strea
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.11 or higher (recommended)
 - pip (Python package installer)
 
 ### Installation
@@ -32,12 +32,18 @@ pip install -r requirements.txt
 
 ### Running the Application
 
+#### Option 1: Run Locally
+
 Start the Streamlit app:
 ```bash
 streamlit run app.py
 ```
 
 The application will open in your default web browser at `http://localhost:8501`
+
+#### Option 2: Run with Docker
+
+See the [Docker Deployment](#docker-deployment-) section below for detailed instructions.
 
 ## Project Structure 📁
 
@@ -47,6 +53,8 @@ streamlit-template/
 ├── pages/
 │   └── settings.py       # Settings page
 ├── requirements.txt      # Python dependencies
+├── Dockerfile            # Docker configuration for containerization
+├── .dockerignore         # Docker build context exclusions
 └── README.md            # This file
 ```
 
@@ -107,6 +115,76 @@ secondaryBackgroundColor = "#f0f2f6"
 textColor = "#262730"
 font = "sans serif"
 ```
+
+## Docker Deployment 🐳
+
+This template includes a production-ready Dockerfile for containerized deployment.
+
+### Building the Docker Image
+
+```bash
+docker build -t streamlit-template .
+```
+
+### Running the Container
+
+Run in foreground:
+```bash
+docker run -p 8501:8501 streamlit-template
+```
+
+Run in detached mode (background):
+```bash
+docker run -d -p 8501:8501 --name streamlit-app streamlit-template
+```
+
+Stop and remove the container:
+```bash
+docker stop streamlit-app
+docker rm streamlit-app
+```
+
+### Publishing to Docker Hub
+
+1. Tag your image:
+```bash
+docker tag streamlit-template yourusername/streamlit-template:latest
+```
+
+2. Push to Docker Hub:
+```bash
+docker push yourusername/streamlit-template:latest
+```
+
+### Deploying to Cloud Platforms
+
+The Dockerfile is compatible with popular cloud platforms:
+
+**Google Cloud Run:**
+```bash
+gcloud run deploy streamlit-template \
+  --image gcr.io/PROJECT_ID/streamlit-template \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --port 8501
+```
+
+**Azure Container Instances:**
+```bash
+az container create \
+  --resource-group myResourceGroup \
+  --name streamlit-app \
+  --image yourusername/streamlit-template:latest \
+  --dns-name-label streamlit-app \
+  --ports 8501
+```
+
+**AWS ECS/Fargate:** Use the image with your ECS task definition
+
+**Heroku:** Use the Heroku Container Registry
+
+**Railway/Render:** Connect your GitHub repository with automatic deployments
 
 ## License 📄
 
