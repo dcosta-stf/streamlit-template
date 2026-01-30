@@ -32,12 +32,39 @@ pip install -r requirements.txt
 
 ### Running the Application
 
+#### Option 1: Run Locally
+
 Start the Streamlit app:
 ```bash
 streamlit run app.py
 ```
 
 The application will open in your default web browser at `http://localhost:8501`
+
+#### Option 2: Run with Docker
+
+Build the Docker image:
+```bash
+docker build -t streamlit-template .
+```
+
+Run the container:
+```bash
+docker run -p 8501:8501 streamlit-template
+```
+
+The application will be available at `http://localhost:8501`
+
+To run in detached mode:
+```bash
+docker run -d -p 8501:8501 --name streamlit-app streamlit-template
+```
+
+Stop the container:
+```bash
+docker stop streamlit-app
+docker rm streamlit-app
+```
 
 ## Project Structure 📁
 
@@ -107,6 +134,44 @@ secondaryBackgroundColor = "#f0f2f6"
 textColor = "#262730"
 font = "sans serif"
 ```
+
+## Docker Deployment 🐳
+
+This template includes a Dockerfile for containerized deployment.
+
+### Building the Docker Image
+
+```bash
+docker build -t streamlit-template .
+```
+
+### Running the Container
+
+```bash
+docker run -p 8501:8501 streamlit-template
+```
+
+### Publishing to Docker Hub
+
+1. Tag your image:
+```bash
+docker tag streamlit-template yourusername/streamlit-template:latest
+```
+
+2. Push to Docker Hub:
+```bash
+docker push yourusername/streamlit-template:latest
+```
+
+### Deploying to Cloud Platforms
+
+The Dockerfile is compatible with popular cloud platforms:
+
+- **Google Cloud Run**: `gcloud run deploy --image gcr.io/PROJECT_ID/streamlit-template`
+- **AWS ECS/Fargate**: Use the image with your ECS task definition
+- **Azure Container Instances**: `az container create --image yourusername/streamlit-template:latest`
+- **Heroku**: Use the Heroku Container Registry
+- **Railway/Render**: Connect your GitHub repository with automatic deployments
 
 ## License 📄
 
