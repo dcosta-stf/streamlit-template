@@ -3,11 +3,17 @@ Settings Page
 Configuration and preferences for the application
 """
 import streamlit as st
-from streamlit_shadcn_ui import card, switch, select, slider, input
-from st_pages import add_page_title
+from streamlit_shadcn_ui import switch, slider, alert, badges
 
-# Add page title
-add_page_title()
+# Configure the page
+st.set_page_config(
+    page_title="Settings - Streamlit Template",
+    page_icon="⚙️",
+    layout="wide",
+)
+
+# Page title
+st.title("⚙️ Settings")
 
 st.markdown("Configure your application settings and preferences.")
 
